@@ -1,0 +1,11 @@
+# .gitignore
+#
+
+# build
+.build
+
+# temporary files
+*.swo
+*.swp
+*~
+tmp/
