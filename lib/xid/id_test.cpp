@@ -1,6 +1,33 @@
 #include <gtest/gtest.h>
 
+#include "exceptions.h"
 #include "id.h"
+
+TEST(xid, id_decode) {
+	// decode
+	{
+		xid::id::data_t expected{
+			0x62, 0xff, 0xbd, 0x97, 0x83, 0xd9, 0x13, 0x5c, 0xf8, 0x0c, 0x5f, 0x4c};
+
+		EXPECT_EQ(expected, xid::id::decode("cbvrr5s3r49lpu0cbt60"));
+	}
+
+	// exception - xid::invalid_id_string
+	{
+		EXPECT_THROW(xid::id::decode(""), xid::invalid_id_string);
+		EXPECT_THROW(xid::id::decode("012345678901234567891"), xid::invalid_id_string);
+	}
+
+	// exception - xid::decode_validation_failure
+	{ EXPECT_THROW(xid::id::decode("01234567890123456789"), xid::decode_validation_failure); }
+}
+
+TEST(xid, id_encode) {
+	xid::id::data_t data{0x4d, 0x88, 0xe1, 0x5b, 0x60, 0xf4, 0x86, 0xe4, 0x28, 0x41, 0x2d, 0xc9};
+	xid::id         id(data);
+
+	EXPECT_EQ("9m4e2mr0ui3e8a215n4g", id.encode());
+}
 
 TEST(xid, id_parts) {
 	struct Test {

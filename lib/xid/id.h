@@ -18,8 +18,8 @@ public:
 	id(data_t) noexcept;
 	id(const std::string &);
 
-	data_t      decode(const std::string &) const;
-	std::string encode() const noexcept;
+	static data_t decode(const std::string &);
+	std::string   encode() const noexcept;
 
 	counter_t counter() const noexcept;
 	machine_t machine() const noexcept;

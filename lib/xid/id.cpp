@@ -15,7 +15,7 @@ id::counter_t id::counter() const noexcept {
 	return (_data[9] << 16) | (_data[10] << 8) | (_data[11] << 0);
 }
 
-id::data_t id::decode(const std::string &encoded) const {
+id::data_t id::decode(const std::string &encoded) {
 	if (encoded.size() != 20) {
 		throw invalid_id_string();
 	}
