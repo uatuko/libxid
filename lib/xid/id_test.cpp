@@ -45,7 +45,10 @@ TEST(xid, id_decode) {
 	}
 
 	// exception - xid::decode_validation_failure
-	{ EXPECT_THROW(xid::id::decode("01234567890123456789"), xid::decode_validation_failure); }
+	{
+		EXPECT_THROW(xid::id::decode("01234567890123456789"), xid::decode_validation_failure);
+		EXPECT_THROW(xid::id::decode("caia5ng890f0tr00hgt="), xid::decode_validation_failure);
+	}
 }
 
 TEST(xid, id_encode) {
