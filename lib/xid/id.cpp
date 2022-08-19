@@ -1,5 +1,6 @@
 #include "id.h"
 
+#include <cstring>
 #include <vector>
 
 #include "exceptions.h"
