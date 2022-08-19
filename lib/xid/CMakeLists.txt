@@ -10,6 +10,16 @@ target_link_libraries(xid
 	PRIVATE OpenSSL::Crypto
 )
 
+if (LIBXID_ENABLE_COVERAGE)
+	target_compile_options(xid
+		PRIVATE --coverage
+	)
+
+	target_link_options(xid
+		INTERFACE -fprofile-arcs
+	)
+endif()
+
 # tests
 if (LIBXID_ENABLE_TESTING)
 	add_executable(xid_tests
