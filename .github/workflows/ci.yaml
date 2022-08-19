@@ -1,0 +1,44 @@
+name: CI
+on: push
+
+jobs:
+  coverage:
+    name: Code coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup lcov
+        run: |
+          version="1.16"
+          mkdir /tmp/lcov-src && cd $_
+          curl -Ls https://github.com/linux-test-project/lcov/releases/download/v1.16/lcov-${version}.tar.gz | tar -xz
+          cd lcov-${version}
+          sudo make install
+      - uses: actions/checkout@v3
+      - name: Configure CMake
+        run: cmake -B .build -DLIBXID_ENABLE_COVERAGE=ON -DLIBXID_ENABLE_TESTING=ON
+      - name: Build
+        run: cmake --build .build
+      - name: Test
+        working-directory: ${{ github.workspace }}/.build
+        run: ctest
+      - name: Generate code coverage reports
+        working-directory: ${{ github.workspace }}/.build
+        run: |
+          lcov --capture --directory lib --output-file coverage.out
+          lcov --extract coverage.out "${{ github.workspace }}/lib/*" --output-file coverage.out
+          lcov --remove coverage.out "*_test*" --output-file coverage.out
+          lcov --list coverage.out
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          directory: ${{ github.workspace }}/.build
+          fail_ci_if_error: true
+          files: coverage.out
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: make lint:ci
