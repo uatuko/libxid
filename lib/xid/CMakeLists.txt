@@ -14,6 +14,7 @@ target_link_libraries(xid
 if (LIBXID_ENABLE_TESTING)
 	add_executable(xid_tests
 		id_test.cpp
+		xid_test.cpp
 	)
 
 	target_link_libraries(xid_tests
