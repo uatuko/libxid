@@ -1,49 +1,44 @@
 #pragma once
 
 #include <array>
-#include <cstddef>
+#include <cstdint>
 #include <string>
 
+#include "id.h"
+
 namespace xid {
-using byte_t      = std::byte;
-using id_t        = std::array<byte_t, 12>;
+using byte_t      = id::byte_t;
 using mid_t       = std::array<byte_t, 3>;
 using pid_t       = std::array<byte_t, 2>;
 using timestamp_t = std::array<byte_t, 4>;
 
-class xid {
-public:
-	/**
-	 * Returns the 3 byte machine ID
-	 */
-	mid_t mid() const noexcept;
+/**
+ * Returns the 3 byte machine ID
+ */
+mid_t mid() noexcept;
 
-	/**
-	 * Returns the next ID
-	 */
-	id_t next() const noexcept;
+/**
+ * Returns the next ID
+ */
+id next() noexcept;
 
-	/**
-	 * Returns the current process ID as 2 bytes (little-endian)
-	 */
-	pid_t pid() const noexcept;
+/**
+ * Returns the current process ID as 2 bytes (little-endian)
+ */
+pid_t pid() noexcept;
 
-	/**
-	 * Returns the timestamp as 4 bytes (little-endian)
-	 */
-	timestamp_t timestamp() const noexcept;
+/**
+ * Returns the timestamp as 4 bytes (little-endian)
+ */
+timestamp_t timestamp() noexcept;
 
-private:
-	/**
-	 * Returns the machine ID
-	 */
-	std::string machine_id() const noexcept;
+/**
+ * Returns the machine ID
+ */
+std::string machine_id() noexcept;
 
-	/**
-	 * Returns a non-deterministic random number
-	 */
-	uint32_t rand() const noexcept;
-};
-
-void next();
+/**
+ * Returns a non-deterministic random number
+ */
+std::uint32_t rand() noexcept;
 } // namespace xid
