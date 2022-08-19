@@ -8,8 +8,11 @@
 
 #include <openssl/md5.h>
 
-#if __APPLE__
+#if defined(__APPLE__) || defined(__FreeBSD__)
 #include <sys/sysctl.h>
+#elif __linux__
+#include <filesystem>
+#include <fstream>
 #endif
 
 namespace xid {
@@ -81,16 +84,44 @@ timestamp_t timestamp() noexcept {
 	};
 }
 
-#if __APPLE__
 std::string machine_id() noexcept {
-	size_t size = 40;
-	char   buffer[size];
+#if defined(__APPLE__) || defined(__FreeBSD__)
+	std::size_t size = 40;
+	char        buffer[size];
 
+#if __APPLE__
 	sysctlbyname("kern.uuid", &buffer, &size, nullptr, 0);
+#else
+	sysctlbyname("kern.hostuuid", &buffer, &size, nullptr, 0);
+#endif
 
 	return buffer;
-}
+#elif __linux__
+	std::filesystem::path paths[] = {
+		"/etc/machine-id",
+		"/sys/class/dmi/id/product_uuid",
+	};
+
+	std::string buffer;
+	for (const auto &path : paths) {
+		auto f = std::ifstream(path);
+		std::getline(f, buffer);
+
+		if (buffer.size() > 0) {
+			break;
+		}
+	}
+
+	if (buffer.size() > 0) {
+		return buffer;
+	}
+
+	// We've exhausted all machine id sources, fallback to a random number
+	return std::to_string(rand());
+#else
+	return std::to_string(rand());
 #endif
+}
 
 std::uint32_t rand() noexcept {
 	std::random_device rd;
