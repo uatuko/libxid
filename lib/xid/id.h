@@ -20,6 +20,9 @@ public:
 
 	inline operator std::string() const noexcept { return encode(); }
 
+	bool operator==(const id &that) const noexcept;
+	bool operator!=(const id &that) const noexcept;
+
 	static data_t decode(const std::string &);
 	std::string   encode() const noexcept;
 

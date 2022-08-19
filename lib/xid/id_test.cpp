@@ -17,6 +17,20 @@ TEST(xid, id_operators) {
 
 		EXPECT_EQ(s, actual);
 	}
+
+	// bool operator==(const id &that) const noexcept
+	{
+		xid::id id("cbvutm76i1e12923egl0");
+		EXPECT_TRUE(xid::id("cbvutm76i1e12923egl0") == id);
+		EXPECT_FALSE(xid::id("cbvutm76i1e12923eglg") == id);
+	}
+
+	// bool operator!=(const id &that) const noexcept;
+	{
+		xid::id id("cbvuucn6i1e12qo0skkg");
+		EXPECT_TRUE(xid::id("cbvuucn6i1e12qo0sklg") != id);
+		EXPECT_FALSE(xid::id("cbvuucn6i1e12qo0skkg") != id);
+	}
 }
 
 TEST(xid, id_conversions) {

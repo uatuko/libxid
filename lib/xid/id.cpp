@@ -11,6 +11,14 @@ id::id(data_t data) noexcept : _data(data) {}
 
 id::id(const std::string &encoded) : _data(decode(encoded)) {}
 
+bool id::operator==(const id &that) const noexcept {
+	return (_data == that._data);
+}
+
+bool id::operator!=(const id &that) const noexcept {
+	return (_data != that._data);
+}
+
 id::counter_t id::counter() const noexcept {
 	return (_data[9] << 16) | (_data[10] << 8) | (_data[11] << 0);
 }
