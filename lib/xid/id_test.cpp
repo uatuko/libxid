@@ -3,6 +3,32 @@
 #include "exceptions.h"
 #include "id.h"
 
+TEST(xid, id_operators) {
+	// std::ostream &operator<<(std::ostream &, const id &)
+	{
+		std::string s  = "cbvs04c3r49m0uvfipsg";
+		xid::id     id = s;
+
+		std::stringstream ss;
+		ss << id;
+
+		std::string actual;
+		ss >> actual;
+
+		EXPECT_EQ(s, actual);
+	}
+}
+
+TEST(xid, id_conversions) {
+	// std::string
+	{
+		std::string s  = "cbvr2ks3r49kvik8ddrg";
+		xid::id     id = s;
+
+		EXPECT_EQ(s, std::string(id));
+	}
+}
+
 TEST(xid, id_decode) {
 	// decode
 	{

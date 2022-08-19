@@ -102,4 +102,8 @@ id::time_t id::time() const noexcept {
 	return std::chrono::system_clock::from_time_t(
 		(_data[0] << 24) | (_data[1] << 16) | (_data[2] << 8) | (_data[3] << 0));
 }
+
+std::ostream &operator<<(std::ostream &os, const id &id) {
+	return os << id.encode();
+}
 } // namespace xid

@@ -18,6 +18,8 @@ public:
 	id(data_t) noexcept;
 	id(const std::string &);
 
+	inline operator std::string() const noexcept { return encode(); }
+
 	static data_t decode(const std::string &);
 	std::string   encode() const noexcept;
 
@@ -31,4 +33,6 @@ public:
 private:
 	data_t _data;
 };
+
+std::ostream &operator<<(std::ostream &, const id &);
 } // namespace xid
