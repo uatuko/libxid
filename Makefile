@@ -1,4 +1,4 @@
-SOURCEDIRS = lib
+SOURCEDIRS = example lib
 SOURCES   := $(foreach dir, $(SOURCEDIRS), $(shell find $(dir) -type f -name '*.h' -o -name '*.cpp'))
 
 
