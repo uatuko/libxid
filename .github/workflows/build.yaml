@@ -31,7 +31,9 @@ jobs:
       - name: Build
         run: |
           cmake --build .build --config Release
+          cmake --build .build --config Release --target libxid_example
       - name: Test
         working-directory: ${{ github.workspace }}/.build
         run: |
           ctest -C Release
+          ./example/libxid_example
