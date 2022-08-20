@@ -27,7 +27,18 @@ int main() {
 	std::cout << "  id: " << id << std::endl;
 
 	std::string s = xid::next();
-	std::cout << "  s: " << s << std::endl;
+	std::cout << "  s: " << s << std::endl << std::endl;
+
+	// Decode id strings
+	id = xid::id("cc0a2mn6i1e6brmdbip0");
+	std::cout << "id (from string): " << id << std::endl;
+
+	auto bytes = xid::id::decode("cc0aar76i1e6jr6no620");
+	std::cout << "decoded bytes: " << std::endl;
+	for (auto i = 0; i < bytes.size(); i++) {
+		std::cout << std::setw(2) << i << std::setw(0) << ": " << std::bitset<8>(bytes[i])
+				  << std::endl;
+	}
 
 	return EXIT_SUCCESS;
 }
