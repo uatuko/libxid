@@ -3,6 +3,7 @@
 [![license](https://img.shields.io/badge/license-MIT-green)](https://raw.githubusercontent.com/uditha-atukorala/libxid/main/LICENSE)
 [![codecov](https://codecov.io/gh/uditha-atukorala/libxid/branch/main/graph/badge.svg?token=cLI6mChQ6V)](https://codecov.io/gh/uditha-atukorala/libxid)
 [![build](https://github.com/uditha-atukorala/libxid/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/uditha-atukorala/libxid/actions/workflows/build.yaml)
+[![release](https://img.shields.io/github/v/release/uditha-atukorala/libxid)](https://github.com/uditha-atukorala/libxid/releases)
 
 A globally unique id generator.
 
