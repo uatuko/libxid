@@ -13,5 +13,6 @@ if (LIBXID_ENABLE_TESTING)
 	enable_testing()
 endif()
 
+add_subdirectory(example)
 add_subdirectory(lib)
 

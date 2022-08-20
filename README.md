@@ -57,6 +57,32 @@ sortable property of the id.
 [MongoID]: https://www.mongodb.com/docs/manual/reference/method/ObjectId/
 
 
+## Usage
+
+```c++
+#include <xid/xid.h>
+
+auto id = xid::next(); // generate the next id
+std::string s = xid::next(); // generate the next id and convert it to a string
+```
+
+```c++
+// Get embedded info
+auto id = xid::next();
+
+id.time();
+id.machine();
+id.pid();
+id.counter();
+```
+
+```c++
+// Decode id strings
+auto id = xid::id("cc0a2mn6i1e6brmdbip0");
+auto bytes = xid::id::decode("cc0aar76i1e6jr6no620");
+```
+
+
 [^1]: https://www.mongodb.com/docs/manual/reference/method/ObjectId/
 [^2]: https://datatracker.ietf.org/doc/html/rfc4648#section-7
 [^3]: https://blog.twitter.com/2010/announcing-snowflake
