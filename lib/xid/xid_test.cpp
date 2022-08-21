@@ -29,8 +29,8 @@ TEST(xid, next) {
 		// Check that timestamp was incremented and is within 30 seconds of the previous one
 		auto d = std::chrono::duration_cast<std::chrono::seconds>(current.time() - previous.time())
 					 .count();
-		EXPECT_LE(0, d);
-		EXPECT_GT(30, d);
+		EXPECT_LE(0, d);  // 0 <= d
+		EXPECT_GT(30, d); // 30 > d
 
 		// Check that machine ids are the same
 		EXPECT_EQ(current.machine(), previous.machine());
