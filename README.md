@@ -1,9 +1,9 @@
 # libxid
 
-[![license](https://img.shields.io/badge/license-MIT-green)](https://raw.githubusercontent.com/uditha-atukorala/libxid/main/LICENSE)
-[![codecov](https://codecov.io/gh/uditha-atukorala/libxid/branch/main/graph/badge.svg?token=cLI6mChQ6V)](https://codecov.io/gh/uditha-atukorala/libxid)
-[![build](https://github.com/uditha-atukorala/libxid/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/uditha-atukorala/libxid/actions/workflows/build.yaml)
-[![release](https://img.shields.io/github/v/release/uditha-atukorala/libxid)](https://github.com/uditha-atukorala/libxid/releases)
+[![license](https://img.shields.io/badge/license-MIT-green)](https://raw.githubusercontent.com/uatuko/libxid/main/LICENSE)
+[![codecov](https://codecov.io/gh/uatuko/libxid/branch/main/graph/badge.svg?token=cLI6mChQ6V)](https://codecov.io/gh/uatuko/libxid)
+[![build](https://github.com/uatuko/libxid/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/uatuko/libxid/actions/workflows/build.yaml)
+[![release](https://img.shields.io/github/v/release/uatuko/libxid)](https://github.com/uatuko/libxid/releases)
 
 A globally unique id generator.
 
@@ -66,7 +66,7 @@ include(FetchContent)
 
 #libxid
 FetchContent_Declare(libxid
-  URL      https://github.com/uditha-atukorala/libxid/archive/refs/tags/v0.1.0.tar.gz
+  URL      https://github.com/uatuko/libxid/archive/refs/tags/v0.1.0.tar.gz
   URL_HASH SHA256=31589bb5274c9d25a8b6c49ee04a6c76151f10082e7feb13314be02a4b2d58c8
 )
 FetchContent_MakeAvailable(libxid)
